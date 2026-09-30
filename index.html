@@ -3,467 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عرب فيليج | بوابة وزارة الداخلية والقوانين</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <title>قوانين وزارة الداخلية | خيران سيتي</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Cairo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: 'rgba(17, 24, 39, 0.75)',
+                        accentBlue: '#3b82f6',
+                        accentHover: '#2563eb',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --bg-primary: #0b0f19;
-            --bg-secondary: #111827;
-            --bg-card: #1f2937;
-            --accent-gold: #d97706;
-            --accent-blue: #3b82f6;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: #374151;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
-
         body {
-            background-color: var(--bg-primary);
-            color: var(--text-main);
+            font-family: 'Cairo', sans-serif;
+            background-color: #0b0f19;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(29, 78, 216, 0.1) 0px, transparent 50%);
+            color: #f3f4f6;
             min-height: 100vh;
         }
-
-        /* Navbar */
-        nav {
-            background-color: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .smooth-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .logo-icon {
-            font-size: 1.8rem;
-            color: var(--accent-gold);
-            background: rgba(217, 119, 6, 0.1);
-            padding: 10px;
-            border-radius: 12px;
-            border: 1px solid rgba(217, 119, 6, 0.3);
+        /* Hide scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        .logo-text h1 {
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: #fff;
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
         }
-
-        .logo-text span {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a8a;
+            border-radius: 4px;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: #fff;
-            background-color: var(--bg-card);
-            border-bottom: 2px solid var(--accent-gold);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        /* Header Banner */
-        .hero-banner {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2.5rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .hero-banner h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .hero-banner p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-        }
-
-        /* Accordion / Laws */
-        .law-card {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            transition: 0.3s;
-        }
-
-        .law-header {
-            padding: 1.2rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            background-color: var(--bg-secondary);
-        }
-
-        .law-header:hover {
-            background-color: var(--bg-card);
-        }
-
-        .law-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .law-title i {
-            color: var(--accent-gold);
-        }
-
-        .law-content {
-            padding: 0 1.5rem 1.2rem 1.5rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            border-top: 1px solid var(--border-color);
-            background-color: rgba(0,0,0,0.1);
-            display: none;
-        }
-
-        .law-card.open .law-content {
-            display: block;
-        }
-
-        /* Quiz Section */
-        .quiz-container {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2rem;
-        }
-
-        .question-box {
-            margin-bottom: 1.5rem;
-        }
-
-        .question-box h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: #fff;
-        }
-
-        .options-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .option-label {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 12px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .option-label:hover {
-            border-color: var(--accent-gold);
-        }
-
-        .option-label input {
-            accent-color: var(--accent-gold);
-        }
-
-        .btn-submit {
-            background-color: var(--accent-gold);
-            color: #fff;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 1rem;
-        }
-
-        .btn-submit:hover {
-            opacity: 0.9;
-        }
-
-        #quiz-result {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 700;
-            display: none;
-        }
-
-        .success-box {
-            background-color: rgba(16, 185, 129, 0.1);
-            border: 1px solid #10b981;
-            color: #34d399;
-        }
-
-        .fail-box {
-            background-color: rgba(239, 68, 68, 0.1);
-            border: 1px solid #ef4444;
-            color: #f87171;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
-    <!-- القائمة العلوية -->
-    <nav>
-        <div class="logo-area">
-            <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
-            <div class="logo-text">
-                <h1>عرب فيليج | Arab Village</h1>
-                <span>بوابة وزارة الداخلية والقوانين</span>
+    <!-- Navbar -->
+    <header class="glass-panel sticky top-0 z-50 border-b border-white/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-600/30 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold text-xl shadow-lg shadow-blue-500/20">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <span class="text-xl font-black tracking-wider text-white">خيران سيتي</span>
             </div>
+            <nav class="flex items-center gap-2 overflow-x-auto py-1">
+                <a href="#" class="px-4 py-2 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 smooth-transition"><i class="fa-solid fa-house ml-1.5"></i> الرئيسية</a>
+                <a href="#" class="px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600/20 text-blue-400 border border-blue-500/30 shadow-md shadow-blue-600/10"><i class="fa-solid fa-book ml-1.5"></i> القوانين</a>
+                <a href="#" class="px-4 py-2 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 smooth-transition"><i class="fa-solid fa-id-card ml-1.5"></i> ليس وزارة الداخلية</a>
+                <a href="#" class="px-4 py-2 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 smooth-transition"><i class="fa-solid fa-car ml-1.5"></i> السيارات</a>
+                <a href="#" class="px-4 py-2 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 smooth-transition"><i class="fa-solid fa-building-shield ml-1.5"></i> أخبار وزارة الداخلية</a>
+            </nav>
         </div>
-        <ul class="nav-links">
-            <li><a class="nav-item active" onclick="switchTab('home')">الرئيسية</a></li>
-            <li><a class="nav-item" onclick="switchTab('interior')">قوانين الداخلية</a></li>
-            <li><a class="nav-item" onclick="switchTab('fivem')">قوانين السيرفر العامة</a></li>
-            <li><a class="nav-item" onclick="switchTab('quiz')">اختبار المواطنين</a></li>
-        </ul>
-    </nav>
+    </header>
 
-    <div class="container">
-
-        <!-- القسم الرئيسي -->
-        <div id="home" class="section active">
-            <div class="hero-banner">
-                <h2>أهلاً بك في البوابة الرسمية لسيرفر عرب فيليج</h2>
-                <p>المنصة الموحدة لاطلاع المواطنين على قوانين وزارة الداخلية، قواعد الرول بلاي لفايف أم، واجتياز اختبار القبول.</p>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px; text-align: center;">
-                    <i class="fa-solid fa-building-shield" style="font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
-                    <h3 style="margin-bottom: 0.5rem;">قطاع وزارة الداخلية</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">تعرف على الأنظمة الأمنية، العقوبات، والقطاعات العسكرية المعتمدة داخل السيرفر.</p>
-                </div>
-                <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px; text-align: center;">
-                    <i class="fa-solid fa-gamepad" style="font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 1rem;"></i>
-                    <h3 style="margin-bottom: 0.5rem;">قوانين فايف أم</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">قواعد الـ RDM, VDM, والتعامل في السيناريوهات لضمان تجربة لعب ممتعة وعادلة للجميع.</p>
-                </div>
-            </div>
+    <!-- Main Content -->
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-10">
+        
+        <!-- Header Banner -->
+        <div class="text-center mb-10">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20 mb-3 shadow-inner">
+                <i class="fa-solid fa-bullhorn ml-1"></i> اللوائح الرسمية
+            </span>
+            <h1 class="text-3xl md:text-4xl font-black text-white mb-3 tracking-tight">قوانين وزارة الداخلية</h1>
+            <p class="text-gray-400 text-sm md:text-base max-w-xl mx-auto">الالتزام بهذه القوانين واجب على جميع منسوبي وزارة الداخلية. الجهل بالقانون لا يعفيك من العقوبة.</p>
         </div>
 
-        <!-- قوانين وزارة الداخلية -->
-        <div id="interior" class="section">
-            <div class="hero-banner" style="padding: 1.5rem; margin-bottom: 1.5rem;">
-                <h2>قوانين وأنظمة وزارة الداخلية</h2>
-                <p>شعارنا: العين الساهرة لأمن وسلامة مدينة عرب فيليج</p>
-            </div>
-
-            <div class="law-card">
-                <div class="law-header" onclick="toggleLaw(this)">
-                    <div class="law-title"><i class="fa-solid fa-gavel"></i> القانون رقم 1: التعامل مع العسكريين ورجال الأمن</div>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="law-content">
-                    يُمنع منعاً باتاً التعرض لرجال الأمن أو إهانة العسكري أثناء تأدية مهامه الرسمية. يُعتبر الاعتداء اللفظي أو الجسدي على الدورية جريمة يُعاقب عليها بالسجن المشدد وسحب رخص القيادة.
-                </div>
-            </div>
-
-            <div class="law-card">
-                <div class="law-header" onclick="toggleLaw(this)">
-                    <div class="law-title"><i class="fa-solid fa-gavel"></i> القانون رقم 2: الأسلحة المرخصة وغير المرخصة</div>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="law-content">
-                    يُحمل السلاح الخفيف فقط لمن يحمل رخصة حمل سلاح صادرة من وزارة الداخلية. أي سلاح حربي أو رشاش يضبط بحوزة مواطن دون إذن رسمي يُعرض صاحبه للتوقيف الفوري ومصادرة المضبوطات.
-                </div>
-            </div>
-
-            <div class="law-card">
-                <div class="law-header" onclick="toggleLaw(this)">
-                    <div class="law-title"><i class="fa-solid fa-gavel"></i> القانون رقم 3: السرعة والقيادة الآمنة</div>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="law-content">
-                    القيادة المتهورة، التفحيط في الأماكن العامة، أو صدم دوريات الشرطة عمداً (تخريب مقصود للسيارات) يعرض المخالف لمخالفات مالية باهظة وحجز المركبة مؤقتاً.
-                </div>
-            </div>
+        <!-- Search Bar -->
+        <div class="relative mb-8">
+            <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <input type="text" id="searchInput" placeholder="ابحث في القوانين (مثلاً: الاستقالة، الرادار، الهروب...)" 
+                class="w-full bg-slate-900/80 border border-white/10 rounded-2xl py-4 pr-12 pl-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 smooth-transition shadow-xl">
         </div>
 
-        <!-- قوانين فايف أم العامة -->
-        <div id="fivem" class="section">
-            <div class="hero-banner" style="padding: 1.5rem; margin-bottom: 1.5rem;">
-                <h2>قوانين سيرفر فايف أم (عرب فيليج)</h2>
-                <p>قواعد أساسية لضمان واقعية اللعب (Roleplay)</p>
-            </div>
-
-            <div class="law-card">
-                <div class="law-header" onclick="toggleLaw(this)">
-                    <div class="law-title"><i class="fa-solid fa-triangle-exclamation"></i> منع الـ RDM (القتل العشوائي)</div>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="law-content">
-                    يُمنع قتل أي لاعب بدون وجود سبب درامي أو سيناريو رول بلاي مسبق وواضح (يجب إعطاء تحذير كافي قبل إطلاق النار).
-                </div>
-            </div>
-
-            <div class="law-card">
-                <div class="law-header" onclick="toggleLaw(this)">
-                    <div class="law-title"><i class="fa-solid fa-triangle-exclamation"></i> منع الـ VDM (الصدم المتعمد بالمركبة)</div>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="law-content">
-                    استخدام السيارة كأداة قتل أو صدم اللاعبين بشكل متكرر ودون سبب يعتبر مخالفة جسيمة تعرض الحساب للبند النهائي.
-                </div>
-            </div>
-
-            <div class="law-card">
-                <div class="law-header" onclick="toggleLaw(this)">
-                    <div class="law-title"><i class="fa-solid fa-triangle-exclamation"></i> قانون الـ FailRP (الواقعية الخاطئة)</div>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="law-content">
-                    يجب تقمص الشخصية بشكل واقعي؛ مثلاً عدم القفز بسيارة رياضية من الجبال أو عدم التحدث بأمور خارج اللعبة (Out Of Character) داخل اللعبة بشكل يفسد الجو العام.
-                </div>
-            </div>
+        <!-- Filter Tags -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-10" id="filterTags">
+            <button onclick="filterCategory('all')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-lg shadow-blue-600/30 smooth-transition">الكل</button>
+            <button onclick="filterCategory('interior')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white border border-white/5 smooth-transition">قوانين وزارة الداخلية</button>
+            <button onclick="filterCategory('discord')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white border border-white/5 smooth-transition">مخالفات الديسكورد</button>
+            <button onclick="filterCategory('activity')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white border border-white/5 smooth-transition">مخالفات عدم التفاعل</button>
+            <button onclick="filterCategory('field1')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white border border-white/5 smooth-transition">المخالفات الميدانية (1)</button>
+            <button onclick="filterCategory('field2')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white border border-white/5 smooth-transition">المخالفات الميدانية (2)</button>
         </div>
 
-        <!-- اختبار المواطنين -->
-        <div id="quiz" class="section">
-            <div class="quiz-container">
-                <h2 style="margin-bottom: 1rem; color: #fff;"><i class="fa-solid fa-file-pen" style="color: var(--accent-gold);"></i> اختبار القبول للمواطنين الجدد</h2>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">أجب عن الأسئلة التالية بشكل صحيح لاجتياز الاختبار والحصول على القبول في سيرفر عرب فيليج.</p>
-                
-                <form id="citizenshipQuiz" onsubmit="evaluateQuiz(event)">
-                    <div class="question-box">
-                        <h3>1. ما هو تعريف الـ RDM في السيرفر؟</h3>
-                        <div class="options-list">
-                            <label class="option-label"><input type="radio" name="q1" value="wrong"> سرقة البنوك بدون خطة.</label>
-                            <label class="option-label"><input type="radio" name="q1" value="correct"> قتل اللاعبين بدون سبب رول بلاي أو سيناريو مسبق.</label>
-                            <label class="option-label"><input type="radio" name="q1" value="wrong"> الهروب من دورية الشرطة بسرعة عالية.</label>
+        <!-- Rules Section Container -->
+        <div class="space-y-4" id="rulesContainer">
+
+            <!-- Category Header: قوانين وزارة الداخلية -->
+            <div class="category-group" data-category="interior">
+                <div class="flex items-center justify-between mb-3 px-2">
+                    <h2 class="text-lg font-bold text-blue-400 flex items-center gap-2">
+                        <i class="fa-solid fa-shield-cat"></i> قوانين وزارة الداخلية
+                    </h2>
+                    <span class="text-xs px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-400 font-semibold border border-blue-500/20">3 بنود</span>
+                </div>
+                <div class="space-y-3">
+                    <!-- Rule Item -->
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-blue-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-xs font-black flex items-center justify-center border border-blue-500/30">1</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 01 - الاستقالة</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                لا يحق لك تقديم الاستقالة ورتبتك جندي، ومن يخالف القوانين سيتم اعتباره مفصولاً وزارياً.
+                            </div>
                         </div>
                     </div>
 
-                    <div class="question-box">
-                        <h3>2. ماذا يجب عليك فعله عند مواجهة دورية تابعة لوزارة الداخلية تطلب منك التوقف؟</h3>
-                        <div class="options-list">
-                            <label class="option-label"><input type="radio" name="q2" value="wrong"> إطلاق النار فوراً لتفادي التفتيش.</label>
-                            <label class="option-label"><input type="radio" name="q2" value="correct"> التوقف بجانب الطريق والتعاون مع رجل الأمن بكل احترام.</label>
-                            <label class="option-label"><input type="radio" name="q2" value="wrong"> تجاهلهم والهرب داخل المنطقة الآمنة.</label>
+                    <!-- Rule Item 2 -->
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-blue-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-xs font-black flex items-center justify-center border border-blue-500/30">2</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 02 - التعامل مع المواطنين</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-xs font-black flex items-center justify-center border border-blue-500/30">2</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 02 - التعامل مع المواطنين</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                التعامل الراقي والأسلوب الحسن مع المواطنين إلزامي لجميع الأفراد والعسكريين.
+                            </div>
                         </div>
                     </div>
 
-                    <div class="question-box">
-                        <h3>3. هل يُسمح بالتحدث بأمور تخص الحياة الواقعية (Discord/OOC) أثناء سيناريو رسمي؟</h3>
-                        <div class="options-list">
-                            <label class="option-label"><input type="radio" name="q3" value="wrong"> نعم، عادي جداً.</label>
-                            <label class="option-label"><input type="radio" name="q3" value="correct"> لا، ممنوع ويُعتبر خروجاً عن الواقعية (FailRP).</label>
+                    <!-- Rule Item 3 -->
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-blue-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-xs font-black flex items-center justify-center border border-blue-500/30">3</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 03 - الصبر واحترام المواطن</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                يجب التحلي بالصبر التام واستيعاب المواطنين والتعامل بحكمة في كافة الظروف الميدانية.
+                            </div>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn-submit">إرسال الإجابات وتقييم الاختبار</button>
-                </form>
-
-                <div id="quiz-result"></div>
+                </div>
             </div>
+
+            <!-- Category Header: مخالفات الديسكورد -->
+            <div class="category-group pt-4" data-category="discord">
+                <div class="flex items-center justify-between mb-3 px-2">
+                    <h2 class="text-lg font-bold text-purple-400 flex items-center gap-2">
+                        <i class="fa-brands fa-discord"></i> مخالفات الديسكورد
+                    </h2>
+                    <span class="text-xs px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-400 font-semibold border border-purple-500/20">2 بنود</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-purple-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-purple-600/20 text-purple-400 text-xs font-black flex items-center justify-center border border-purple-500/30">1</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">اللعب كمواطن بدون برتبه</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                يُمنع منعاً باتاً الدخول للروم أو اللعب بشخصية مواطن دون امتلاك الرتبة المخصصة لذلك في سيرفر الديسكورد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-purple-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-purple-600/20 text-purple-400 text-xs font-black flex items-center justify-center border border-purple-500/30">2</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">التواجد في رومَات الداخلية دون سبب</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                يمنع منعاً باتاً دخول رومات العمل الخاصة بوزارة الداخلية بدون صفة رسمية أو استدعاء.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-    </div>
+    </main>
 
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-white/10 mt-16 py-8 px-6 text-center text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="font-bold text-white text-sm">خيران سيتي</span>
+                <p class="mt-1">الوابة الرسمية لقطاع وزارة الداخلية. نهدف لتوفير بيئة لعب واقعية وممتعة.</p>
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-white smooth-transition">الرئيسية</a>
+                <a href="#" class="hover:text-white smooth-transition">قوانين السيرفر</a>
+                <a href="#" class="hover:text-white smooth-transition">أخبار الوزارة</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for Interactivity -->
     <script>
-        // التنقل بين الأقسام
-        function switchTab(tabId) {
-            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        // Smooth Accordion Toggle
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
             
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // إظهار وإخفاء القوانين (Accordion)
-        function toggleLaw(header) {
-            const card = header.parentElement;
-            card.classList.toggle('open');
-        }
-
-        // تقييم الاختبار
-        function evaluateQuiz(e) {
-            e.preventDefault();
-            const q1 = document.querySelector('input[name="q1"]:checked');
-            const q2 = document.querySelector('input[name="q2"]:checked');
-            const q3 = document.querySelector('input[name="q3"]:checked');
-            const resultBox = document.getElementById('quiz-result');
-
-            if (!q1 || !q2 || !q3) {
-                resultBox.style.display = 'block';
-                resultBox.className = 'fail-box';
-                resultBox.innerHTML = 'الرجاء الإجابة على جميع الأسئلة قبل الإرسال!';
-                return;
-            }
-
-            let score = 0;
-            if (q1.value === 'correct') score++;
-            if (q2.value === 'correct') score++;
-            if (q3.value === 'correct') score++;
-
-            resultBox.style.display = 'block';
-            if (score === 3) {
-                resultBox.className = 'success-box';
-                resultBox.innerHTML = 'مبروك! لقد اجتزت اختبار القبول بنجاح (3/3). تفضل بالتوجه لبرنامج الديسكورد لإتمام تسجيلك في سيرفر عرب فيليج.';
+            // Close others if needed, or keep open. Let's make it smooth toggle:
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
             } else {
-                resultBox.className = 'fail-box';
-                resultBox.innerHTML = `للأسف لقد حصلت على (${score}/3). يرجى مراجعة القوانين جيداً والمحاولة مرة أخرى.`;
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
             }
         }
+
+        // Filter Category Logic
+        function filterCategory(category) {
+            // Update active button style
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/30');
+                btn.classList.add('bg-slate-800/80', 'text-gray-300');
+            });
+            event.target.classList.remove('bg-slate-800/80', 'text-gray-300');
+            event.target.classList.add('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/30');
+
+            // Filter groups
+            const groups = document.querySelectorAll('.category-group');
+            groups.forEach(group => {
+                if (category === 'all' || group.getAttribute('data-category') === category) {
+                    group.style.display = 'block';
+                } else {
+                    group.style.display = 'none';
+                }
+            });
+        }
+
+        // Live Search Logic
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.rule-card');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(term)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
