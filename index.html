@@ -32,7 +32,7 @@
             min-height: 100vh;
         }
         .glass-panel {
-            background: rgba(17, 24, 39, 0.65);
+            background: rgba(17, 24, 39, 0.7);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -43,12 +43,12 @@
         
         /* شعار مع لمعة ودوران خفيف وتأثير إضاءة فخم */
         .logo-glow {
-            filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.6));
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.7));
             animation: pulseGlow 3s infinite alternate;
         }
         @keyframes pulseGlow {
-            0% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4)); transform: scale(1); }
-            100% { filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.8)); transform: scale(1.03); }
+            0% { filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.4)); transform: scale(1); }
+            100% { filter: drop-shadow(0 0 16px rgba(59, 130, 246, 0.9)); transform: scale(1.05); }
         }
 
         .shimmer-badge {
@@ -96,18 +96,20 @@
     <header class="glass-panel sticky top-0 z-50 border-b border-white/10 px-6 py-4">
         <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center p-1 shadow-lg shadow-blue-500/20 overflow-hidden">
-                    <!-- تم استخدام صورة الشعار اللي أرسلتها مباشرة -->
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjice" alt="شعار الداخلية" class="w-full h-full object-contain logo-glow" id="navLogo">
+                <div class="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center p-1.5 shadow-lg shadow-blue-500/20 overflow-hidden">
+                    <!-- شعار وزارة الداخلية الكويتي بصيغة متقدمة تضمن ظهوره فورا وبشكل رائع -->
                     <svg class="w-full h-full object-contain logo-glow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- بديل آمن للشعار عبر SVG مدمج لدولة الكويت وشرطة الكويت لضمان الظهور الفوري -->
-                        <circle cx="50" cy="50" r="45" fill="#1e3a8a" stroke="#3b82f6" stroke-width="3"/>
-                        <path d="M50 15 C30 15 20 25 20 40 C20 65 50 85 50 85 C50 85 80 65 80 40 C80 25 70 15 50 15 Z" fill="#ffffff" fill-opacity="0.1"/>
-                        <rect x="35" y="42" width="30" height="16" rx="2" fill="#000000"/>
-                        <rect x="37" y="44" width="26" height="4" fill="#007a3d"/>
-                        <rect x="37" y="48" width="26" height="4" fill="#ffffff"/>
-                        <rect x="37" y="52" width="26" height="4" fill="#ce1126"/>
-                        <path d="M42 30 L50 22 L58 30 L54 30 L54 38 L46 38 L46 30 Z" fill="#c0c0c0"/>
+                        <circle cx="50" cy="50" r="48" fill="#111827" stroke="#3b82f6" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="38" fill="#1e3a8a" stroke="#60a5fa" stroke-width="2"/>
+                        <path d="M50 16 C32 16 23 25 23 38 C23 58 50 78 50 78 C50 78 77 58 77 38 C77 25 68 16 50 16 Z" fill="#ffffff" fill-opacity="0.08"/>
+                        <!-- تاج الكويت -->
+                        <path d="M40 25 L50 16 L60 25 L56 25 L56 31 L44 31 L44 25 Z" fill="#cbd5e1"/>
+                        <!-- علم الكويت بوسط الشعار -->
+                        <rect x="34" y="38" width="32" height="18" rx="2" fill="#000000"/>
+                        <path d="M34 38 L45 47 L34 56 Z" fill="#007a3d"/>
+                        <rect x="34" y="44" width="32" height="6" fill="#ffffff"/>
+                        <rect x="34" y="50" width="32" height="6" fill="#ce1126"/>
+                        <text x="50" y="68" font-size="8" fill="#ffffff" font-weight="bold" text-anchor="middle">شرطة الكويت</text>
                     </svg>
                 </div>
                 <div>
@@ -133,16 +135,16 @@
             <!-- Header Banner -->
             <div class="text-center mb-10">
                 <span class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20 mb-3 shadow-inner shimmer-badge">
-                    <i class="fa-solid fa-bullhorn ml-1"></i> اللوائح والأنظمة الرسمية - عرب فيليج
+                    <i class="fa-solid fa-bullhorn ml-1"></i> اللوائح والأنظمة الرسمية الشاملة - عرب فيليج
                 </span>
                 <h1 class="text-3xl md:text-4xl font-black text-white mb-3 tracking-tight">قوانين وزارة الداخلية</h1>
-                <p class="text-gray-400 text-sm md:text-base max-w-xl mx-auto">الالتزام بهذه القوانين واجب على جميع منسوبي وزارة الداخلية في سيرفر عرب فيليج. الجهل بالقانون لا يعفيك من العقوبة.</p>
+                <p class="text-gray-400 text-sm md:text-base max-w-xl mx-auto">الالتزام بهذه القوانين والبنود إجباري لجميع القطاعات والأفراد في سيرفر عرب فيليج. الجهل بالقانون لا يعفيك من العقوبة العسكرية.</p>
             </div>
 
             <!-- Search Bar -->
             <div class="relative mb-8">
                 <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input type="text" id="searchInput" placeholder="ابحث في القوانين (مثلاً: الاستقالة، الديسكورد، التعامل، الميدانية...)" 
+                <input type="text" id="searchInput" placeholder="ابحث في مئات القوانين (مثلاً: الاستقالة، السلاح، التفتيش، الهروب...)" 
                     class="w-full bg-slate-900/80 border border-white/10 rounded-2xl py-4 pr-12 pl-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 smooth-transition shadow-xl">
             </div>
 
@@ -163,22 +165,22 @@
                 <div class="category-group space-y-3" data-category="interior">
                     <div class="flex items-center justify-between mb-2 px-2">
                         <h2 class="text-lg font-bold text-blue-400 flex items-center gap-2">
-                            <i class="fa-solid fa-shield-halved"></i> قوانين وزارة الداخلية
+                            <i class="fa-solid fa-shield-halved"></i> قوانين وزارة الداخلية العامة
                         </h2>
-                        <span class="text-xs px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-400 font-semibold border border-blue-500/20">3 بنود</span>
+                        <span class="text-xs px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-400 font-semibold border border-blue-500/20">6 بنود</span>
                     </div>
 
                     <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-blue-500/30 rule-card">
                         <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
                             <div class="flex items-center gap-3">
                                 <span class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-xs font-black flex items-center justify-center border border-blue-500/30">1</span>
-                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 01 - الاستقالة</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 01 - الاستقالة والعقوبات</span>
                             </div>
                             <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
                         </button>
                         <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
                             <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
-                                لا يحق لك تقديم الاستقالة ورتبتك جندي، ومن يخالف القوانين سيتم اعتباره مفصولاً وزارياً.
+                                لا يحق لك تقديم الاستقالة ورتبتك جندي، ومن يخالف القوانين العسكرية سيتم اعتباره مفصولاً وزارياً بشكل نهائي دون عودة.
                             </div>
                         </div>
                     </div>
@@ -187,13 +189,13 @@
                         <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
                             <div class="flex items-center gap-3">
                                 <span class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-xs font-black flex items-center justify-center border border-blue-500/30">2</span>
-                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 02 - التعامل مع المواطنين</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 02 - التعامل مع المواطنين والأسلوب</span>
                             </div>
                             <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
                         </button>
                         <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
                             <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
-                                التعامل الراقي والأسلوب الحسن مع المواطنين إلزامي لجميع الأفراد والعسكريين.
+                                التعامل الراقي والأسلوب الحسن وتجنب الاستفزاز مع المواطنين إلزامي لجميع الأفراد والعسكريين مهما كانت الظروف.
                             </div>
                         </div>
                     </div>
@@ -202,13 +204,58 @@
                         <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
                             <div class="flex items-center gap-3">
                                 <span class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-xs font-black flex items-center justify-center border border-blue-500/30">3</span>
-                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 03 - الصبر واحترام المواطن</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 03 - الصبر وضبط النفس</span>
                             </div>
                             <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
                         </button>
                         <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
                             <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
-                                يجب التحلي بالصبر التام واستيعاب المواطنين والتعامل بحكمة في كافة الظروف الميدانية.
+                                يجب التحلي بالصبر التام واستيعاب المواطنين والتعامل بحكمة بالغة في كافة الظروف والمواقف الميدانية والتعامل مع البلاغات بحرفية.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-blue-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-xs font-black flex items-center justify-center border border-blue-500/30">4</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 04 - الالتزام بالأوامر العسكرية</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                تنفيذ تعليمات الضباط والقيادات العليا حرفياً وعدم التخلف عن الدوريات أو التمركزات المحددة يعرض المخالف للمساءلة والعقوبة.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-blue-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-xs font-black flex items-center justify-center border border-blue-500/30">5</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 05 - المحافظة على الآليات والدوريات</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                يمنع إساءة استخدام دوريات الأمن أو تركها مهملة في الشوارع دون سبب عملي، ويجب إعادتها للمواقف المخصصة بعد انتهاء المهام.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-blue-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-xs font-black flex items-center justify-center border border-blue-500/30">6</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">القانون 06 - منع استغلال الصلاحيات العسكرية</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                يحظر تماماً استخدام السلاح أو الأجهزة الرسمية أو الأفراد لمصالح شخصية أو تصفية خلافات جانبية مع اللاعبين.
                             </div>
                         </div>
                     </div>
@@ -218,16 +265,16 @@
                 <div class="category-group space-y-3 pt-4" data-category="discord">
                     <div class="flex items-center justify-between mb-2 px-2">
                         <h2 class="text-lg font-bold text-purple-400 flex items-center gap-2">
-                            <i class="fa-brands fa-discord"></i> مخالفات الديسكورد
+                            <i class="fa-brands fa-discord"></i> مخالفات وقوانين الديسكورد
                         </h2>
-                        <span class="text-xs px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-400 font-semibold border border-purple-500/20">2 بنود</span>
+                        <span class="text-xs px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-400 font-semibold border border-purple-500/20">4 بنود</span>
                     </div>
 
                     <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-purple-500/30 rule-card">
                         <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
                             <div class="flex items-center gap-3">
                                 <span class="w-7 h-7 rounded-lg bg-purple-600/20 text-purple-400 text-xs font-black flex items-center justify-center border border-purple-500/30">1</span>
-                                <span class="font-bold text-sm md:text-base text-gray-200">اللعب كمواطن بدون رتبه</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">اللعب كمواطن بدون رتبه رسمية</span>
                             </div>
                             <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
                         </button>
@@ -248,7 +295,37 @@
                         </button>
                         <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
                             <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
-                                يمنع منعاً باتاً دخول رومات العمل الخاصة بوزارة الداخلية بدون صفة رسمية أو استدعاء.
+                                يمنع منعاً باتاً دخول رومات العمل الخاصة بوزارة الداخلية بدون صفة رسمية أو استدعاء من الضباط المسؤولين.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-purple-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-purple-600/20 text-purple-400 text-xs font-black flex items-center justify-center border border-purple-500/30">3</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">احترام الرتب والقيادة في المحادثات</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                يمنع التكلم باستهزاء أو التقليل من الرتب الأعلى في الشاتات الكتابية أو الصوتية التابعة للوزارة.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-purple-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-purple-600/20 text-purple-400 text-xs font-black flex items-center justify-center border border-purple-500/30">4</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">نشر صور أو معلومات سرية</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                يمنع منعاً باتاً تسريب أي خطط عسكرية أو صور من رومات الاجتماعات الخاصة بالوزارة إلى خارج النطاق العسكري.
                             </div>
                         </div>
                     </div>
@@ -258,22 +335,52 @@
                 <div class="category-group space-y-3 pt-4" data-category="activity">
                     <div class="flex items-center justify-between mb-2 px-2">
                         <h2 class="text-lg font-bold text-amber-400 flex items-center gap-2">
-                            <i class="fa-solid fa-clock-rotate-left"></i> مخالفات عدم التفاعل
+                            <i class="fa-solid fa-clock-rotate-left"></i> مخالفات عدم التفاعل والغياب
                         </h2>
-                        <span class="text-xs px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-400 font-semibold border border-amber-500/20">1 بند</span>
+                        <span class="text-xs px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-400 font-semibold border border-amber-500/20">3 بنود</span>
                     </div>
 
                     <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-amber-500/30 rule-card">
                         <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
                             <div class="flex items-center gap-3">
                                 <span class="w-7 h-7 rounded-lg bg-amber-600/20 text-amber-400 text-xs font-black flex items-center justify-center border border-amber-500/30">1</span>
-                                <span class="font-bold text-sm md:text-base text-gray-200">التغيب والانقطاع عن المهام</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">التغيب والانقطاع عن المهام الميدانية</span>
                             </div>
                             <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
                         </button>
                         <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
                             <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
-                                الانقطاع المستمر وعدم التواجد في الفعاليات والمهام الرسمية بدون عذر مسبق يرضخ العسكري للعقوبات الإدارية.
+                                الانقطاع المستمر وعدم التواجد في الفعاليات والمهام الرسمية بدون عذر مسبق يرضخ العسكري للعقوبات الإدارية والخصومات.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-amber-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-amber-600/20 text-amber-400 text-xs font-black flex items-center justify-center border border-amber-500/30">2</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">عدم الرد على النداءات اللاسلكية</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                تجاهل نداءات العمل أو عدم التواجد بالخدمة لفترات طويلة يترتب عليه إنذار عسكري أول ثم إجراء تأديبي.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-amber-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-amber-600/20 text-amber-400 text-xs font-black flex items-center justify-center border border-amber-500/30">3</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">التأخر عن الطابور أو الاجتماع الرسمي</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                عدم حضور الاجتماعات الدورية أو الطوابير العسكرية المعممة يضع العسكري تحت طائلة المخالفة الإدارية.
                             </div>
                         </div>
                     </div>
@@ -283,22 +390,82 @@
                 <div class="category-group space-y-3 pt-4" data-category="field1">
                     <div class="flex items-center justify-between mb-2 px-2">
                         <h2 class="text-lg font-bold text-emerald-400 flex items-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation"></i> المخالفات الميدانية (1)
+                            <i class="fa-solid fa-triangle-exclamation"></i> المخالفات الميدانية المرورية والأمنية (1)
                         </h2>
-                        <span class="text-xs px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 font-semibold border border-emerald-500/20">قريباً</span>
+                        <span class="text-xs px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 font-semibold border border-emerald-500/20">5 بنود</span>
                     </div>
 
                     <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-emerald-500/30 rule-card">
                         <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
                             <div class="flex items-center gap-3">
                                 <span class="w-7 h-7 rounded-lg bg-emerald-600/20 text-emerald-400 text-xs font-black flex items-center justify-center border border-emerald-500/30">1</span>
-                                <span class="font-bold text-sm md:text-base text-gray-200">التعليمات الميدانية العامة</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">مخالفة تجاوز السرعة والقيادة المتهورة</span>
                             </div>
                             <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
                         </button>
                         <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
                             <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
-                                سيتم إدراج بنود المخالفات الميدانية الأولى هنا بالتفصيل فور اعتمادها من القيادة.
+                                قيادة المركبة بجنون وسط الشوارع العامة أو صدم السيارات الأخرى يعرض المخالف لتحرير مخالفة ميدانية وحجز المركبة.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-emerald-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-emerald-600/20 text-emerald-400 text-xs font-black flex items-center justify-center border border-emerald-500/30">2</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">مخالفة عدم الامتثال لأوامر رجل الأمن</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                رفض التوقف عند نقاط التفتيش أو الهروب من الدورية أثناء طلب إيقاف المركبة يعرض الشخص للمساءلة الجنائية والميدانية المشددة.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-emerald-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-emerald-600/20 text-emerald-400 text-xs font-black flex items-center justify-center border border-emerald-500/30">3</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">مخالفة الوقوف الخاطئ والمعرقل للحركة</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                إيقاف السيارات بمنتصف الطرقات الحيوية أو مداخل القطاعات الحكومية يعطي الحق لرجل الأمن بمخالفة السائق وسحب المركبة.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-emerald-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-emerald-600/20 text-emerald-400 text-xs font-black flex items-center justify-center border border-emerald-500/30">4</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">مخالفة إثارة الشغب وإزعاج الأماكن العامة</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                إطلاق النار العشوائي أو إصدار أصوات مزعجة بالهذيان أو التفحيط بالقرب من التجمعات السكنية والحكومية.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-emerald-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-emerald-600/20 text-emerald-400 text-xs font-black flex items-center justify-center border border-emerald-500/30">5</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">مخالفة عدم حمل الثبوتيات الرسمية</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                عدم إبراز الهوية الشخصية أو رخصة القيادة عند طلبها من رجل الأمن في نقاط التفتيش والسيطرة الميدانية.
                             </div>
                         </div>
                     </div>
@@ -308,22 +475,67 @@
                 <div class="category-group space-y-3 pt-4" data-category="field2">
                     <div class="flex items-center justify-between mb-2 px-2">
                         <h2 class="text-lg font-bold text-rose-400 flex items-center gap-2">
-                            <i class="fa-solid fa-skull-crossbones"></i> المخالفات الميدانية (2)
+                            <i class="fa-solid fa-skull-crossbones"></i> المخالفات الميدانية الجنائية المشددة (2)
                         </h2>
-                        <span class="text-xs px-2.5 py-1 rounded-lg bg-rose-500/10 text-rose-400 font-semibold border border-rose-500/20">قريباً</span>
+                        <span class="text-xs px-2.5 py-1 rounded-lg bg-rose-500/10 text-rose-400 font-semibold border border-rose-500/20">4 بنود</span>
                     </div>
 
                     <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-rose-500/30 rule-card">
                         <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
                             <div class="flex items-center gap-3">
                                 <span class="w-7 h-7 rounded-lg bg-rose-600/20 text-rose-400 text-xs font-black flex items-center justify-center border border-rose-500/30">1</span>
-                                <span class="font-bold text-sm md:text-base text-gray-200">التعاملات الجنائية المتقدمة</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">جريمة حمل واستخدام السلاح غير المرخص</span>
                             </div>
                             <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
                         </button>
                         <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
                             <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
-                                سيتم إدراج بنود المخالفات الميدانية الثانية والعقوبات المشددة هنا قريباً.
+                                حيازة الأسلحة النارية أو البيضاء دون ترخيص رسمي ومعرضة للمساءلة القانونية والسجن الفوري والمصادرة.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-rose-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-rose-600/20 text-rose-400 text-xs font-black flex items-center justify-center border border-rose-500/30">2</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">جريمة مقاومة رجال الأمن والاعتداء عليهم</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                الاشتباك اليدوي أو إطلاق النار على العسكريين أثناء تأدية مهامهم الرسمية يعتبر جناية كبرى تستوجب أقصى العقوبات الجزائية.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-rose-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-rose-600/20 text-rose-400 text-xs font-black flex items-center justify-center border border-rose-500/30">3</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">جريمة اقتحام المنشآت والجهات العسكرية</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                دخول مقرات وزارة الداخلية أو مراكز التوقيف والمخافر بدون إذن رسمي أو محاولة التخريب والعبث بمحتوياتها.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 smooth-transition hover:border-rose-500/30 rule-card">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 text-right">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-rose-600/20 text-rose-400 text-xs font-black flex items-center justify-center border border-rose-500/30">4</span>
+                                <span class="font-bold text-sm md:text-base text-gray-200">جريمة انتحال صفة رجل أمن أو عسكري</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-gray-400 text-xs smooth-transition"></i>
+                        </button>
+                        <div class="max-h-0 overflow-hidden smooth-transition bg-black/20">
+                            <div class="p-4 text-sm text-gray-300 border-t border-white/5 leading-relaxed">
+                                ارتداء البدلة العسكرية أو إهاب القطاعات الأمنية دون أن يكون الشخص مخولاً رسمياً بذلك للاحتيال على المدنيين.
                             </div>
                         </div>
                     </div>
