@@ -13,302 +13,377 @@
             font-family: 'Cairo', sans-serif;
         }
         body {
-            background-color: #0b0f19;
+            background-color: #060913;
             color: #f8fafc;
             min-height: 100vh;
         }
-        /* الهيدر العلوي تماماً مثل السيرفر */
+        /* الهيدر الفخم مع الشعار */
         header {
-            background: #111827;
-            border-bottom: 2px solid #1f2937;
-            padding: 15px 50px;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border-bottom: 2px solid #38bdf8;
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 30px rgba(56, 189, 248, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .logo-area {
-            font-size: 20px;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6));
+        }
+        .logo-text {
+            font-size: 22px;
             font-weight: 900;
-            color: #ffffff;
-            background: linear-gradient(45deg, #38bdf8, #818cf8);
+            background: linear-gradient(45deg, #38bdf8, #818cf8, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
         }
         nav ul {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         nav ul li a {
-            color: #94a3b8;
+            color: #cbd5e1;
             text-decoration: none;
             transition: all 0.3s ease;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
             padding: 8px 16px;
-            border-radius: 6px;
-            background: #1f2937;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid #1e293b;
         }
         nav ul li a:hover, nav ul li a.active {
-            color: #ffffff;
-            background: #2563eb;
-            box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
+            color: #fff;
+            background: #0284c7;
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
+            transform: translateY(-2px);
         }
-        .main-container {
+        .container {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
         }
-        .page-content {
+        .section-block {
             display: none;
+            animation: fadeIn 0.4s ease-in-out;
         }
-        .page-content.active {
+        .section-block.active {
             display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         h1, h2 {
             color: #38bdf8;
             margin-bottom: 20px;
             font-weight: 900;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            border-right: 5px solid #38bdf8;
+            padding-right: 15px;
         }
-        /* القوائم المنسدلة للقوانين */
-        .accordion-btn {
-            background: #111827;
+        /* القوائم المنسدلة للقوانين اللامعة */
+        .law-card {
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            border: 1px solid #334155;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+        .law-card:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+        .law-btn {
+            background: transparent;
             color: #f8fafc;
             cursor: pointer;
             padding: 18px 20px;
             width: 100%;
-            border: 1px solid #1f2937;
+            border: none;
             text-align: right;
             outline: none;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            transition: 0.3s;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .accordion-btn:hover, .accordion-btn.active {
-            background: #1f2937;
-            border-color: #38bdf8;
+        .law-btn span {
             color: #38bdf8;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+            transition: transform 0.3s;
         }
-        .accordion-panel {
+        .law-btn.active span {
+            transform: rotate(180deg);
+        }
+        .law-content {
             padding: 0 20px;
             background: #090d16;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            border-radius: 0 0 8px 8px;
-            margin-bottom: 10px;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
             color: #94a3b8;
-            border: 1px solid transparent;
             font-size: 14px;
+            line-height: 1.8;
+            border-top: 1px solid transparent;
         }
-        .accordion-panel.show {
+        .law-content.show {
             padding: 15px 20px;
-            max-height: 300px;
-            border-color: #1f2937;
+            max-height: 200px;
+            border-top-color: #1e293b;
         }
-        /* شبكة السيارات */
-        .grid-cars {
+        /* شبكة السيارات الفخمة */
+        .cars-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
-            margin-top: 15px;
-            margin-bottom: 30px;
+            margin-top: 20px;
+            margin-bottom: 40px;
         }
-        .car-card {
-            background: linear-gradient(145deg, #111827, #1f2937);
-            border: 1px solid #374151;
-            border-radius: 10px;
-            padding: 20px;
+        .car-box {
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 22px;
             text-align: center;
             transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
-        .car-card:hover {
+        .car-box:hover {
             transform: translateY(-5px);
             border-color: #38bdf8;
-            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
         }
-        .car-card h3 {
+        .car-box h3 {
             color: #38bdf8;
-            margin-bottom: 8px;
-            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 900;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
-        .car-card p {
-            color: #94a3b8;
-            font-size: 13px;
+        .car-box p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+        .info-card {
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 25px;
+            font-size: 16px;
+            color: #cbd5e1;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
         footer {
             text-align: center;
-            padding: 20px;
-            background: #111827;
-            border-top: 1px solid #1f2937;
-            margin-top: 50px;
+            padding: 25px;
+            background: #0f172a;
+            border-top: 1px solid #1e293b;
+            margin-top: 60px;
             color: #64748b;
-            font-size: 13px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-area">عرب فيليج</div>
+        <div class="logo-container">
+            <!-- استخدام شعار شرطة الكويت الرسمي المطابق للصورة -->
+            <img src="https://i.ibb.co/6R24y3z/image-24.png" alt="شعار شرطة الكويت">
+            <div class="logo-text">عرب فيليج | وزارة الداخلية</div>
+        </div>
         <nav>
             <ul>
-                <li><a href="#" onclick="openTab(event, 'home')" class="tab-btn active" id="defaultOpen">الرئيسية</a></li>
-                <li><a href="#" onclick="openTab(event, 'laws')" class="tab-btn">القوانين</a></li>
-                <li><a href="#" onclick="openTab(event, 'interior')" class="tab-btn">لبس وزارة الداخلية</a></li>
-                <li><a href="#" onclick="openTab(event, 'cars')" class="tab-btn">السيارات</a></li>
-                <li><a href="#" onclick="openTab(event, 'exams')" class="tab-btn">اختبار وزارة الداخلية</a></li>
+                <li><a href="#" onclick="showSection(event, 'home')" class="nav-tab active">الرئيسية</a></li>
+                <li><a href="#" onclick="showSection(event, 'laws')" class="nav-tab">القوانين</a></li>
+                <li><a href="#" onclick="showSection(event, 'interior')" class="nav-tab">لبس وزارة الداخلية</a></li>
+                <li><a href="#" onclick="showSection(event, 'cars')" class="nav-tab">السيارات</a></li>
+                <li><a href="#" onclick="showSection(event, 'exams')" class="nav-tab">اختبار وزارة الداخلية</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="main-container">
+    <div class="container">
         <!-- الرئيسية -->
-        <div id="home" class="page-content">
+        <div id="home" class="section-block active">
             <h1>الرئيسية</h1>
-            <div style="background: #111827; padding: 25px; border-radius: 10px; border: 1px solid #1f2937;">
-                <p>مرحباً بك في بوابة وزارة الداخلية الرسمية لسيرفر عرب فيليج. يرجى الالتزام بالقوانين العسكرية واللوائح التنظيمية.</p>
+            <div class="info-card">
+                <p>مرحباً بك في بوابة وزارة الداخلية الرسمية في سيرفر <strong>عرب فيليج (Arab Village)</strong>. تم تصميم هذا الموقع لخدمة العسكريين وتنظيم كافة القوانين واللوائح والسيارات الرسمية.</p>
             </div>
         </div>
 
         <!-- القوانين -->
-        <div id="laws" class="page-content">
+        <div id="laws" class="section-block">
             <h1>قوانين وزارة الداخلية</h1>
             
-            <button class="accordion-btn">6. تسريب معلومات خاصة بوزارة الداخلية <span>▼</span></button>
-            <div class="accordion-panel"><p>تعد تسريب أي معلومات سرية أو خاصة بوزارة الداخلية خيانة وظيفية وتحاسب عليها بأشد العقوبات.</p></div>
+            <div class="law-card">
+                <button class="law-btn">6. تسريب معلومات خاصة بوزارة الداخلية <span>▼</span></button>
+                <div class="law-content"><p>تعد تسريب أي معلومات سرية أو خاصة بوزارة الداخلية خيانة وظيفية وتحاسب عليها بأشد العقوبات.</p></div>
+            </div>
 
-            <button class="accordion-btn">7. إهمال مركز وزارة الداخلية <span>▼</span></button>
-            <div class="accordion-panel"><p>تمنع إهمال مركز وزارة الداخلية أو التغيب عنه دون سبب رسمي مقبول.</p></div>
+            <div class="law-card">
+                <button class="law-btn">7. إهمال مركز وزارة الداخلية <span>▼</span></button>
+                <div class="law-content"><p>تمنع إهمال مركز وزارة الداخلية أو التغيب عنه دون سبب رسمي مقبول.</p></div>
+            </div>
 
-            <button class="accordion-btn">8. عدم الجدية في الاصطفاف العسكري <span>▼</span></button>
-            <div class="accordion-panel"><p>يجب الجدية التامة والانتظام أثناء الاصطفاف العسكري، وعدم الالتزام بذلك يُعد مخالفة.</p></div>
+            <div class="law-card">
+                <button class="law-btn">8. عدم الجدية في الاصطفاف العسكري <span>▼</span></button>
+                <div class="law-content"><p>يجب الجدية التامة والانتظام أثناء الاصطفاف العسكري، وعدم الالتزام بذلك يُعد مخالفة.</p></div>
+            </div>
 
-            <button class="accordion-btn">9. عدم الاستجابة والسرعة في الصف العسكري <span>▼</span></button>
-            <div class="accordion-panel"><p>يجب على كل عسكري الاستجابة الفورية والانتظام في الصف دون تأخير أو تراخ.</p></div>
+            <div class="law-card">
+                <button class="law-btn">9. عدم الاستجابة والسرعة في الصف العسكري <span>▼</span></button>
+                <div class="law-content"><p>يجب على كل عسكري الاستجابة الفورية والانتظام في الصف دون تأخير أو تراخ.</p></div>
+            </div>
 
-            <button class="accordion-btn">10. عدم الجدية في العمل <span>▼</span></button>
-            <div class="accordion-panel"><p>يُشترط في جميع منسوبي وزارة الداخلية الجدية الكاملة أثناء أداء مهامهم الوظيفية وعدم الجدية مخالفة صريحة.</p></div>
+            <div class="law-card">
+                <button class="law-btn">10. عدم الجدية في العمل <span>▼</span></button>
+                <div class="law-content"><p>يُشترط في جميع منسوبي وزارة الداخلية الجدية الكاملة أثناء أداء مهامهم الوظيفية وعدم الجدية مخالفة صريحة.</p></div>
+            </div>
 
-            <button class="accordion-btn">11. عدم احترام اللبس العسكري <span>▼</span></button>
-            <div class="accordion-panel"><p>يجب احترام الزي العسكري والمحافظة على هيبته، ويُمنع أي تصرف يُسيء لمظهر أو قيمة اللبس العسكري.</p></div>
+            <div class="law-card">
+                <button class="law-btn">11. عدم احترام اللبس العسكري <span>▼</span></button>
+                <div class="law-content"><p>يجب احترام الزي العسكري والمحافظة على هيبته، ويُمنع أي تصرف يُسيء لمظهر أو قيمة اللبس العسكري.</p></div>
+            </div>
 
-            <h2 style="margin-top: 35px;">⚠ المخالفات الميدانية من الدرجة الثالثة</h2>
+            <h2 style="margin-top: 40px;">⚠ المخالفات الميدانية من الدرجة الثالثة</h2>
             
-            <button class="accordion-btn">1. قتل عسكري متعمد <span>▼</span></button>
-            <div class="accordion-panel"><p>تُعد قتل أي منسوب عسكري بشكل متعمد من أشد المخالفات خطورة وتُطبق بحقه أقصى العقوبات التأديبية.</p></div>
+            <div class="law-card">
+                <button class="law-btn">1. قتل عسكري متعمد <span>▼</span></button>
+                <div class="law-content"><p>تُعد قتل أي منسوب عسكري بشكل متعمد من أشد المخالفات خطورة وتُطبق بحقه أقصى العقوبات التأديبية.</p></div>
+            </div>
 
-            <button class="accordion-btn">2. سجن عسكري متعمد <span>▼</span></button>
-            <div class="accordion-panel"><p>تمنع سجن أي عسكري بشكل متعمد وبدون سبب قانوني وجيه، وتُعد ذلك مخالفة جسيمة من الدرجة الثالثة.</p></div>
+            <div class="law-card">
+                <button class="law-btn">2. سجن عسكري متعمد <span>▼</span></button>
+                <div class="law-content"><p>تمنع سجن أي عسكري بشكل متعمد وبدون سبب قانوني وجيه، وتُعد ذلك مخالفة جسيمة من الدرجة الثالثة.</p></div>
+            </div>
 
-            <button class="accordion-btn">3. كلبشة عسكري متعمدة <span>▼</span></button>
-            <div class="accordion-panel"><p>تمنع تكبيل أي منسوب عسكري بشكل متعمد وبدون مسوغ رسمي، وتُحاسب مرتكبها بأشد العقوبات.</p></div>
+            <div class="law-card">
+                <button class="law-btn">3. كلبشة عسكري متعمدة <span>▼</span></button>
+                <div class="law-content"><p>تمنع تكبيل أي منسوب عسكري بشكل متعمد وبدون مسوغ رسمي، وتُحاسب مرتكبها بأشد العقوبات.</p></div>
+            </div>
 
-            <button class="accordion-btn">4. التخريب في المركز أو المداهمة أو التفتيش أو التدريب <span>▼</span></button>
-            <div class="accordion-panel"><p>يُمنع أي تخريب أو تعطيل متعمد لعمليات المركز أو المداهمات أو التفتيش أو جلسات التدريب الرسمية.</p></div>
+            <div class="law-card">
+                <button class="law-btn">4. التخريب في المركز أو المداهمة أو التفتيش أو التدريب <span>▼</span></button>
+                <div class="law-content"><p>يُمنع أي تخريب أو تعطيل متعمد لعمليات المركز أو المداهمات أو التفتيش أو جلسات التدريب الرسمية.</p></div>
+            </div>
 
-            <button class="accordion-btn">5. خيانة العهدة العسكرية <span>▼</span></button>
-            <div class="accordion-panel"><p>خيانة العهدة العسكرية بأي شكل من الاشكال تُعد من أخطر المخالفات وتستوجب المساءلة الفورية والعقوبة الصارمة.</p></div>
+            <div class="law-card">
+                <button class="law-btn">5. خيانة العهدة العسكرية <span>▼</span></button>
+                <div class="law-content"><p>خيانة العهدة العسكرية بأي شكل من الاشكال تُعد من أخطر المخالفات وتستوجب المساءلة الفورية والعقوبة الصارمة.</p></div>
+            </div>
 
-            <button class="accordion-btn">6. عدم احترام مواطن أو عسكري أو ضابط أو مسؤول أو مجلس <span>▼</span></button>
-            <div class="accordion-panel"><p>يجب احترام جميع الأطراف سواء كانوا مواطنين أو عسكريين أو ضباطاً أو مسؤولين أو أعضاء المجلس، وعدم الاحترام مخالفة صريحة.</p></div>
+            <div class="law-card">
+                <button class="law-btn">6. عدم احترام مواطن أو عسكري أو ضابط أو مسؤول أو مجلس <span>▼</span></button>
+                <div class="law-content"><p>يجب احترام جميع الأطراف سواء كانوا مواطنين أو عسكريين أو ضباطاً أو مسؤولين أو أعضاء المجلس، وعدم الاحترام مخالفة صريحة.</p></div>
+            </div>
         </div>
 
         <!-- لبس وزارة الداخلية -->
-        <div id="interior" class="page-content">
+        <div id="interior" class="section-block">
             <h1>لبس وزارة الداخلية</h1>
-            <div style="background: #111827; padding: 25px; border-radius: 10px; border: 1px solid #1f2937;">
-                <p>قريباً سيتم إضافة تفاصيل لبس وزي وزارة الداخلية العسكري هنا.</p>
+            <div class="info-card">
+                <p>قريباً سيتم إضافة تفاصيل الأزيام العسكرية والرتب لجميع قطاعات وزارة الداخلية في عرب فيليج.</p>
             </div>
         </div>
 
         <!-- السيارات -->
-        <div id="cars" class="page-content">
+        <div id="cars" class="section-block">
             <h1>معرض السيارات - وزارة الداخلية</h1>
-            <p style="color: #94a3b8; margin-bottom: 20px;">استكشف أسطول السيارات المتاحة في السيرفر لقطاع وزارة الداخلية في عرب فيليج.</p>
+            <p style="color: #94a3b8; margin-bottom: 25px;">استكشف أسطول السيارات المتاحة في السيرفر لقطاع وزارة الداخلية في عرب فيليج.</p>
 
             <h2>🚗 سيارات الأفراد</h2>
-            <div class="grid-cars">
-                <div class="car-card">
+            <div class="cars-grid">
+                <div class="car-box">
                     <h3>جيتور / تاهو</h3>
-                    <p>مرور<br>من جندي الى وكيل ضابط أول (مرور)</p>
+                    <p><strong>مرور</strong><br>من جندي الى وكيل ضابط أول (مرور)</p>
                 </div>
             </div>
 
             <h2>⭐ سيارات ضباط</h2>
-            <div class="grid-cars">
-                <div class="car-card">
+            <div class="cars-grid">
+                <div class="car-box">
                     <h3>جيتور</h3>
-                    <p>امن عام<br>من ملازم الى مقدم أول (امن عام)</p>
+                    <p><strong>امن عام</strong><br>من ملازم الى مقدم أول (امن عام)</p>
                 </div>
-                <div class="car-card">
+                <div class="car-box">
                     <h3>اودي</h3>
-                    <p>امن عام<br>من نقيب الى مقدم (امن عام)</p>
+                    <p><strong>امن عام</strong><br>من نقيب الى مقدم (امن عام)</p>
                 </div>
-                <div class="car-card">
+                <div class="car-box">
                     <h3>باترول</h3>
-                    <p>امن عام<br>من عقيد الى لواء (امن عام)</p>
+                    <p><strong>امن عام</strong><br>من عقيد الى لواء (امن عام)</p>
                 </div>
-                <div class="car-card">
+                <div class="car-box">
                     <h3>جينيسيس</h3>
-                    <p>نجدة<br>فريق اول / فريق أول ركن (3 نجوم)</p>
+                    <p><strong>نجدة</strong><br>فريق اول / فريق أول ركن (3 نجوم)</p>
                 </div>
             </div>
 
             <h2>🚨 سيارات المداهمات</h2>
-            <div class="grid-cars">
-                <div class="car-card">
+            <div class="cars-grid">
+                <div class="car-box">
                     <h3>رام</h3>
-                    <p>مداهمات<br>سيارة المداهمات</p>
+                    <p><strong>مداهمات</strong><br>سيارة المداهمات</p>
                 </div>
-                <div class="car-card">
+                <div class="car-box">
                     <h3>سكاليد</h3>
-                    <p>مسائل ضباط<br>مسائل الضباط (جميع الوزارات)</p>
+                    <p><strong>مسائل ضباط</strong><br>مسائل الضباط (جميع الوزارات)</p>
                 </div>
-                <div class="car-card">
+                <div class="car-box">
                     <h3>تاهو</h3>
-                    <p>امن عام<br>تاهو (امن عام) - مسائل الافراد</p>
+                    <p><strong>امن عام</strong><br>تاهو (امن عام) - مسائل الافراد</p>
                 </div>
-                <div class="car-card">
+                <div class="car-box">
                     <h3>بوقاتي</h3>
-                    <p>مجلس أعلى<br>سيارة المجلس الأعلى - بوقاتي (جميع القطاعات)</p>
+                    <p><strong>مجلس أعلى</strong><br>سيارة المجلس الأعلى - بوقاتي (جميع القطاعات)</p>
                 </div>
             </div>
 
             <h2>🛡 سيارة الرقابة والتفتيش</h2>
-            <div class="grid-cars">
-                <div class="car-card">
+            <div class="cars-grid">
+                <div class="car-box">
                     <h3>سيارة الرقابة والتفتيش</h3>
-                    <p>رقابة وتفتيش<br>سيارة الرقابة والتفتيش لوزارة الداخلية</p>
+                    <p><strong>رقابة وتفتيش</strong><br>سيارة الرقابة والتفتيش لوزارة الداخلية</p>
                 </div>
             </div>
 
             <h2>👑 سيارات الوزراء</h2>
-            <div class="grid-cars">
-                <div class="car-card">
+            <div class="cars-grid">
+                <div class="car-box">
                     <h3>سكاليد</h3>
-                    <p>وزارة الداخلية<br>نائب وزير الداخلية / المستشار - سكاليد (وزارة الداخلية)</p>
+                    <p><strong>وزارة الداخلية</strong><br>نائب وزير الداخلية / المستشار - سكاليد</p>
                 </div>
-                <div class="car-card">
+                <div class="car-box">
                     <h3>جينيسيس</h3>
-                    <p>وزارة الداخلية<br>وزير الداخلية - جينيسيس</p>
+                    <p><strong>وزارة الداخلية</strong><br>وزير الداخلية - جينيسيس</p>
                 </div>
             </div>
         </div>
 
         <!-- اختبار وزارة الداخلية -->
-        <div id="exams" class="page-content">
+        <div id="exams" class="section-block">
             <h1>اختبار وزارة الداخلية</h1>
-            <div style="background: #111827; padding: 25px; border-radius: 10px; border: 1px solid #1f2937;">
-                <p>منطقة اختبارات القبول والعسكرة العسكرية.</p>
+            <div class="info-card">
+                <p>منطقة اختبارات القبول العسكري والأسئلة الخاصة بوزارة الداخلية.</p>
             </div>
         </div>
     </div>
@@ -318,34 +393,30 @@
     </footer>
 
     <script>
-        // فتح واغلاق التبويبات بسلاسة
-        function openTab(evt, tabName) {
-            let i, content, links;
-            content = document.getElementsByClassName("page-content");
-            for (i = 0; i < content.length; i++) {
-                content[i].classList.remove("active");
+        // دالة التنقل بين الأقسام بسلاسة تامة
+        function showSection(evt, sectionId) {
+            let sections = document.getElementsByClassName("section-block");
+            for (let s of sections) {
+                s.classList.remove("active");
             }
-            links = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < links.length; i++) {
-                links[i].classList.remove("active");
+            let tabs = document.getElementsByClassName("nav-tab");
+            for (let t of tabs) {
+                t.classList.remove("active");
             }
-            document.getElementById(tabName).classList.add("active");
+            document.getElementById(sectionId).classList.add("active");
             evt.currentTarget.classList.add("active");
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // تفعيل القوائم المنسدلة للقوانين
-        const acc = document.getElementsByClassName("accordion-btn");
-        for (let i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
+        // تفعيل الأكورديون (القوائم المنسدلة للقوانين)
+        const lawBtns = document.getElementsByClassName("law-btn");
+        for (let btn of lawBtns) {
+            btn.addEventListener("click", function() {
                 this.classList.toggle("active");
-                let panel = this.nextElementSibling;
-                panel.classList.toggle("show");
+                let content = this.nextElementSibling;
+                content.classList.toggle("show");
             });
         }
-
-        // فتح الصفحة الرئيسية تلقائياً عند التحميل
-        document.getElementById("defaultOpen").click();
     </script>
 
 </body>
