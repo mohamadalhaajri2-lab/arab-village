@@ -12,195 +12,339 @@
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap');
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #080e1a;
+            background-color: #050b14;
             color: #f3f4f6;
         }
         .glass-panel {
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(13, 20, 35, 0.8);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
-        /* تأثيرات حركية على النصوص والكلام */
-        .glow-text {
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        /* تأثيرات اللمعة والتوهج */
+        .glow-title {
+            text-shadow: 0 0 25px rgba(59, 130, 246, 0.6), 0 0 50px rgba(59, 130, 246, 0.2);
         }
-        .fade-in {
-            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .shine-effect {
+            position: relative. overflow: hidden;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.08) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            transform: rotate(30deg) translate(-100%, -100%);
+            transition: transform 0.7s ease-in-out;
         }
+        .shine-effect:hover::after {
+            transform: rotate(30deg) translate(100%, 100%);
+        }
+        /* سلاسة القوائم المنسدلة */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
         }
         .accordion-content.open {
-            max-height: 300px;
+            max-height: 400px;
+        }
+        /* إخفاء المحتوى عند التنقل بين الأقسام */
+        .section-tab {
+            display: none;
+        }
+        .section-tab.active-section {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+<body class="min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
 
     <!-- شريط التنقل العلوي -->
-    <header class="glass-panel sticky top-0 z-50 border-b border-slate-800/80 shadow-2xl">
+    <header class="glass-panel sticky top-0 z-50 border-b border-blue-900/30">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
             
-            <!-- الشعار الصحيح والمميز -->
-            <div class="flex items-center gap-3.5 group cursor-pointer" onclick="switchTab('home')">
-                <div class="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 p-0.5 shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform duration-300">
-                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-blue-400 text-xl">
-                        <i class="fa-solid fa-landmark-dome"></i>
+            <!-- الشعار الرسمي لوزارة الداخلية -->
+            <div class="flex items-center gap-3.5 cursor-pointer group" onclick="switchSection('laws', document.getElementById('nav-laws'))">
+                <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-600 p-0.5 shadow-lg shadow-blue-600/40 group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-blue-400 text-2xl shadow-inner">
+                        <i class="fa-solid fa-shield-halved"></i>
                     </div>
                 </div>
                 <div>
-                    <h1 class="font-extrabold text-base text-white tracking-wider flex items-center gap-1.5">
-                        عرب فيليج 
-                        <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full border border-blue-500/30 font-medium">رسمي</span>
+                    <h1 class="font-black text-base text-white tracking-wider flex items-center gap-1.5">
+                        عرب فيليج
+                        <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full border border-blue-500/30">وزارة الداخلية</span>
                     </h1>
-                    <p class="text-xs text-slate-400 font-medium">وزارة الداخلية</p>
+                    <p class="text-xs text-slate-400 font-medium">البوابة العسكرية الرسمية</p>
                 </div>
             </div>
 
-            <!-- روابط التنقل -->
-            <nav class="hidden md:flex items-center gap-1.5 bg-slate-900/60 p-1.5 rounded-2xl border border-slate-800">
-                <a href="#" onclick="switchTab('home', event)" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-blue-600 text-white shadow-md shadow-blue-600/30">الرئيسية</a>
-                <a href="#" onclick="switchTab('laws', event)" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-300 hover:bg-slate-800 hover:text-white">القوانين</a>
-                <a href="#" onclick="switchTab('ministry', event)" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-300 hover:bg-slate-800 hover:text-white">لباس وزارة الداخلية</a>
-                <a href="#" onclick="switchTab('cars', event)" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-300 hover:bg-slate-800 hover:text-white">السيارات</a>
-                <a href="#" onclick="switchTab('news', event)" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-300 hover:bg-slate-800 hover:text-white">أخبار وزارة الداخلية</a>
+            <!-- خيارات التنقل العلوية (تعمل بالكامل الآن) -->
+            <nav class="hidden md:flex items-center gap-1.5 bg-slate-900/80 p-1.5 rounded-2xl border border-slate-800 shadow-inner">
+                <button id="nav-home" onclick="switchSection('home', this)" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800">الرئيسية</button>
+                <button id="nav-laws" onclick="switchSection('laws', this)" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-blue-600 text-white shadow-lg shadow-blue-600/40 shine-effect">القوانين</button>
+                <button id="nav-ministry" onclick="switchSection('ministry', this)" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800">لباس وزارة الداخلية</button>
+                <button id="nav-cars" onclick="switchSection('cars', this)" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800">السيارات</button>
+                <button id="nav-news" onclick="switchSection('news', this)" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800">أخبار وزارة الداخلية</button>
             </nav>
         </div>
     </header>
 
     <!-- المحتوى الرئيسي -->
-    <main class="flex-grow max-w-5xl mx-auto px-4 py-10 w-full fade-in">
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-10 w-full">
         
-        <!-- قسم العنوان مع تأثيرات التوهج -->
-        <div class="text-center mb-10">
-            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/25 mb-4 shadow-sm">
-                <i class="fa-solid fa-shield-halved animate-pulse"></i> اللوائح والأنظمة الرسمية الشاملة - عرب فيليج المحدث وموسوعة
-            </span>
-            <h2 class="text-3xl md:text-5xl font-black text-white mb-4 glow-text tracking-tight">قوانين وزارة الداخلية</h2>
-            <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">قائمة ضخمة ومحدثة تشمل كافة البنود والمخالفات الميدانية والبدائية لضمان الانضباط العسكري في سرور عرب فيليج.</p>
+        <!-- 1. قسم القوانين (الافتراضي) -->
+        <div id="section-laws" class="section-tab active-section">
+            <div class="text-center mb-10">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/30 mb-4 shadow-lg shadow-blue-500/10">
+                    <i class="fa-solid fa-scale-balanced animate-pulse"></i> موسوعة اللوائح والأنظمة الرسمية الشاملة - عرب فيليج
+                </span>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-4 glow-title tracking-tight">قوانين وزارة الداخلية</h2>
+                <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">قائمة ضخمة ومحدثة تشمل كافة البنود والمخالفات الميدانية والبدائية لضمان الانضباط العسكري في سرور عرب فيليج.</p>
+            </div>
+
+            <!-- شريط البحث -->
+            <div class="relative mb-8 group">
+                <i class="fa-solid fa-magnifying-glass absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-400 transition-colors"></i>
+                <input type="text" id="searchInput" oninput="filterLaws()" placeholder="ابحث في القوانين والبنود (مثال: استقالة، تفتيش، مشاجرة، هروب)..." class="w-full bg-slate-900/90 border border-slate-800 rounded-2xl py-4 pr-13 pl-5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-all shadow-xl">
+            </div>
+
+            <!-- التصنيفات -->
+            <div class="flex items-center gap-2.5 overflow-x-auto pb-4 mb-8 scrollbar-none">
+                <button onclick="filterCategory('all', this)" class="cat-btn px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-blue-600 text-white shadow-lg shadow-blue-600/30">الكل</button>
+                <button onclick="filterCategory('ministry', this)" class="cat-btn px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-slate-900/80 text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-white">قوانين وزارة الداخلية</button>
+                <button onclick="filterCategory('military', this)" class="cat-btn px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-slate-900/80 text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-white">مخالفات العساكر</button>
+                <button onclick="filterCategory('traffic', this)" class="cat-btn px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-slate-900/80 text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-white">مخالفات الآليات</button>
+                <button onclick="filterCategory('penalties', this)" class="cat-btn px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-slate-900/80 text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-white">العقوبات العسكرية</button>
+            </div>
+
+            <!-- قائمة القوانين الموسعة (أكثر من 6 قوانين) -->
+            <div class="space-y-3.5" id="lawsContainer">
+                
+                <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 shine-effect" data-cat="ministry" data-text="القانون 01 - شروط الاستقالة والعقوبات المترتبة عليها">
+                    <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
+                        <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
+                            <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-black border border-blue-500/30">01</span>
+                            القانون 01 - شروط الاستقالة والعقوبات المترتبة عليها
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-slate-950/50 border-t border-slate-800/60">
+                        <p class="py-4 text-slate-300 text-sm leading-relaxed">يحق لأي فرد تقديم طلب استقالة وفق الشروط النظامية للسرور، وفي حال الإخلال بالمدة القانونية للخدمة تترتب عقوبات إدارية وخصم من الرصيد العسكري.</p>
+                    </div>
+                </div>
+
+                <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 shine-effect" data-cat="ministry" data-text="القانون 02 - التعامل الراقي وأسلوب الخطاب مع المواطنين">
+                    <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
+                        <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
+                            <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-black border border-blue-500/30">02</span>
+                            القانون 02 - التعامل الراقي وأسلوب الخطاب مع المواطنين
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-slate-950/50 border-t border-slate-800/60">
+                        <p class="py-4 text-slate-300 text-sm leading-relaxed">يجب الالتزام التام بالاحترام المتبادل واستخدام العبارات اللائقة أثناء التعامل الميداني مع المدنيين وعدم التعسف في استخدام السلطة.</p>
+                    </div>
+                </div>
+
+                <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 shine-effect" data-cat="military" data-text="القانون 03 - الصبر وضبط النفس والتحلي بالحكمة">
+                    <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
+                        <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
+                            <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-black border border-blue-500/30">03</span>
+                            القانون 03 - الصبر وضبط النفس والتحلي بالحكمة
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-slate-950/50 border-t border-slate-800/60">
+                        <p class="py-4 text-slate-300 text-sm leading-relaxed">القطاعات العسكرية تتطلب ضبط النفس في حالات الضغط الميداني والاستفزاز، ويعاقب كل من يتسرع في ردة الفعل العنيفة غير المبررة.</p>
+                    </div>
+                </div>
+
+                <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 shine-effect" data-cat="military" data-text="القانون 04 - الالتزام التام بتنفيذ الأوامر العسكرية">
+                    <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
+                        <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
+                            <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-black border border-blue-500/30">04</span>
+                            القانون 04 - الالتزام التام بتنفيذ الأوامر العسكرية
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-slate-950/50 border-t border-slate-800/60">
+                        <p class="py-4 text-slate-300 text-sm leading-relaxed">تنفيذ الأوامر الصادرة من الرتب الأعلى واجب قطعي ما لم تكن مخالفة صريحة لقواعد اللعبة الأساسية، والتمرد يواجه بالفصل المباشر.</p>
+                    </div>
+                </div>
+
+                <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 shine-effect" data-cat="traffic" data-text="القانون 05 - المحافظة الصارمة على الآليات والدوريات">
+                    <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
+                        <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
+                            <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-black border border-blue-500/30">05</span>
+                            القانون 05 - المحافظة الصارمة على الآليات والدوريات
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-slate-950/50 border-t border-slate-800/60">
+                        <p class="py-4 text-slate-300 text-sm leading-relaxed">السيارات والدوريات الرسمية هي عهدة أمنية يجب صيانتها وعدم استخدامها في أغراض شخصية أو ترفيهية خارج نطاق العمل الميداني.</p>
+                    </div>
+                </div>
+
+                <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 shine-effect" data-cat="penalties" data-text="القانون 06 - منع استغلال النفوذ والصلاحيات العسكرية">
+                    <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
+                        <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
+                            <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-black border border-blue-500/30">06</span>
+                            القانون 06 - منع استغلال النفوذ والصلاحيات العسكرية
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-slate-950/50 border-t border-slate-800/60">
+                        <p class="py-4 text-slate-300 text-sm leading-relaxed">يحرّم منعاً باتاً استغلال الرتبة العسكرية لتحقيق مصالح شخصية، أو مساعدة أصدقاء خارج إطار القانون والنظام المعمول به.</p>
+                    </div>
+                </div>
+
+                <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 shine-effect" data-cat="military" data-text="القانون 07 - الالتزام بمواعيد الدوام الرسمي والاستعداد">
+                    <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
+                        <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
+                            <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-black border border-blue-500/30">07</span>
+                            القانون 07 - الالتزام بمواعيد الدوام الرسمي والاستعداد
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-slate-950/50 border-t border-slate-800/60">
+                        <p class="py-4 text-slate-300 text-sm leading-relaxed">يجب التواجد في المقرات العسكرية بالوقت المحدد، والتخلف المتكرر بدون عذر مقبول يترتب عليه إجراءات تأديبية صارمة.</p>
+                    </div>
+                </div>
+
+                <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 shine-effect" data-cat="penalties" data-text="القانون 08 - حظر التعامل مع العصابات أو التستر عليهم">
+                    <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
+                        <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
+                            <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-black border border-blue-500/30">08</span>
+                            القانون 08 - حظر التعامل مع العصابات أو التستر عليهم
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-slate-950/50 border-t border-slate-800/60">
+                        <p class="py-4 text-slate-300 text-sm leading-relaxed">يمنع منعاً باتاً التعاون مع الخارجين عن القانون أو تسريب المعلومات الأمنية، وعقوبتها الفصل النهائي الفوري من القطاع العسكري.</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <!-- شريط البحث -->
-        <div class="relative mb-8 group">
-            <i class="fa-solid fa-magnifying-glass absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-400 transition-colors"></i>
-            <input type="text" id="searchInput" oninput="filterLaws()" placeholder="ابحث في القوانين والبنود (مثال: استقالة، تفتيش، مشاجرة، هروب)..." class="w-full bg-slate-900/90 border border-slate-800 rounded-2xl py-4 pr-13 pl-5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xl">
+        <!-- 2. قسم الرئيسية -->
+        <div id="section-home" class="section-tab text-center py-12">
+            <div class="glass-panel p-10 rounded-3xl max-w-2xl mx-auto border border-blue-500/30">
+                <div class="w-20 h-20 bg-blue-600/20 text-blue-400 rounded-3xl mx-auto flex items-center justify-center text-4xl mb-6 shadow-lg shadow-blue-500/20 border border-blue-500/40">
+                    <i class="fa-solid fa-landmark"></i>
+                </div>
+                <h2 class="text-3xl font-black text-white mb-4 glow-title">مرحباً بك في بوابة وزارة الداخلية</h2>
+                <p class="text-slate-300 text-base leading-relaxed mb-8">المنصة الرسمية المعتمدة لقطاعات وزارة الداخلية في سرور عرب فيليج. هنا تجد كافة الأنظمة، القوانين، اللوائح الميدانية، والتعليمات العسكرية المحدثة.</p>
+                <button onclick="switchSection('laws', document.getElementById('nav-laws'))" class="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-xl shadow-blue-600/40 transition-all">تصفح القوانين الآن</button>
+            </div>
         </div>
 
-        <!-- الفئات والأقسام -->
-        <div class="flex items-center gap-2.5 overflow-x-auto pb-4 mb-8 scrollbar-none">
-            <button onclick="filterCategory('all', this)" class="cat-btn px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-blue-600 text-white shadow-lg shadow-blue-600/25">الكل</button>
-            <button onclick="filterCategory('ministry', this)" class="cat-btn px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-slate-900/80 text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-white">قوانين وزارة الداخلية (15)</button>
-            <button onclick="filterCategory('military', this)" class="cat-btn px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-slate-900/80 text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-white">مخالفات العساكر (10)</button>
-            <button onclick="filterCategory('traffic', this)" class="cat-btn px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-slate-900/80 text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-white">مخالفات عدم التعديل (6)</button>
-            <button onclick="filterCategory('penalties', this)" class="cat-btn px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-slate-900/80 text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-white">المخالفات العسكرية (5)</button>
+        <!-- 3. قسم لباس وزارة الداخلية -->
+        <div id="section-ministry" class="section-tab">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-3 glow-title">لباس وزارة الداخلية والبدلات الرسمية</h2>
+                <p class="text-slate-400 text-sm">الزي العسكري المعتمد لكافة الرتب والقطاعات في سيرفر عرب فيليج.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <h3 class="font-bold text-lg text-blue-400 mb-2">الزي الميداني العام</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">اللباس المخصص للدوريات الأمنية والمهام الميدانية اليومية، ويجب الالتزام بارتدائه كاملاً أثناء أوقات الدوام الرسمي.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <h3 class="font-bold text-lg text-blue-400 mb-2">زي القطاعات الخاصة</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">البدلة التكتيكية الخاصة بقوات العمليات الخاصة والمهام الصعبة والتدخل السريع.</p>
+                </div>
+            </div>
         </div>
 
-        <!-- القوائم المنسدلة للقوانين (تعمل بالكامل وبكل سلاسة) -->
-        <div class="space-y-3.5" id="lawsContainer">
-            
-            <!-- القانون 01 -->
-            <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/40" data-cat="ministry" data-text="القانون 01 - شروط الاستقالة والعقوبات المترتبة عليها">
-                <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
-                    <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
-                        <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-extrabold border border-blue-500/20 shadow-inner">01</span>
-                        القانون 01 - شروط الاستقالة والعقوبات المترتبة عليها
-                    </span>
-                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
-                </button>
-                <div class="accordion-content px-6 bg-slate-950/40 border-t border-slate-800/50">
-                    <p class="py-4 text-slate-300 text-sm leading-relaxed">يحق لأي فرد تقديم طلب استقالة وفق الشروط النظامية للسرور، وفي حال الإخلال بالمدة القانونية للخدمة تترتب عقوبات إدارية وخصم من الرصيد العسكري.</p>
+        <!-- 4. قسم السيارات -->
+        <div id="section-cars" class="section-tab">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-3 glow-title">آليات ودوريات وزارة الداخلية</h2>
+                <p class="text-slate-400 text-sm">أسطول السيارات الرسمي والدوريات الميدانية المعتمدة.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 text-center">
+                    <i class="fa-solid fa-car-rear text-3xl text-blue-400 mb-4"></i>
+                    <h3 class="font-bold text-white mb-2">دوريات المرور والنجدة</h3>
+                    <p class="text-slate-400 text-xs">مخصصة لتنظيم السير والتعامل الفوري مع البلاغات الأمنية والمرورية.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 text-center">
+                    <i class="fa-solid fa-truck-fast text-3xl text-blue-400 mb-4"></i>
+                    <h3 class="font-bold text-white mb-2">آليات التدخل السريع</h3>
+                    <p class="text-slate-400 text-xs">سيارات ذات دفع رباعي مجهزة للمداهمات والتعامل مع الحالات الأمنية الخاصة.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 text-center">
+                    <i class="fa-solid fa-shield-car text-3xl text-blue-400 mb-4"></i>
+                    <h3 class="font-bold text-white mb-2">سيارات القيادة والتحقيق</h3>
+                    <p class="text-slate-400 text-xs">مخصصة للضباط وقادة القطاعات أثناء التواجد الميداني في مسرح الأحداث.</p>
                 </div>
             </div>
+        </div>
 
-            <!-- القانون 02 -->
-            <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/40" data-cat="ministry" data-text="القانون 02 - التعامل الراقي وأسلوب الخطاب مع المواطنين">
-                <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
-                    <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
-                        <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-extrabold border border-blue-500/20 shadow-inner">02</span>
-                        القانون 02 - التعامل الراقي وأسلوب الخطاب مع المواطنين
-                    </span>
-                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
-                </button>
-                <div class="accordion-content px-6 bg-slate-950/40 border-t border-slate-800/50">
-                    <p class="py-4 text-slate-300 text-sm leading-relaxed">يجب الالتزام التام بالاحترام المتبادل واستخدام العبارات اللائقة أثناء التعامل الميداني مع المدنيين وعدم التعسف في استخدام السلطة.</p>
+        <!-- 5. قسم أخبار وزارة الداخلية -->
+        <div id="section-news" class="section-tab">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-3 glow-title">أخبار وزارة الداخلية</h2>
+                <p class="text-slate-400 text-sm">آخر التحديثات، الترقيات، والقرارات الإدارية في عرب فيليج.</p>
+            </div>
+            <div class="space-y-4 max-w-2xl mx-auto">
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <span class="text-xs text-blue-400 font-semibold mb-1 block">تحديث رسمي - أكتوبر 2026</span>
+                    <h3 class="font-bold text-white text-base mb-2">تحديث اللائحة التنفيذية وقوانين الضبط العسكري</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">تم اعتماد تعديلات جديدة على قوانين الاستقالة والعقوبات الميدانية لضمان رفع كفاءة العناصر العسكرية في السيرفر.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <span class="text-xs text-blue-400 font-semibold mb-1 block">إعلان إداري</span>
+                    <h3 class="font-bold text-white text-base mb-2">فتح باب التسجيل والترقيات العسكرية</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">تم الإعلان عن بدء استقبال طلبات الالتحاق بالقطاعات الأمنية المختلفة عبر الديسكورد الرسمي.</p>
                 </div>
             </div>
-
-            <!-- القانون 03 -->
-            <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/40" data-cat="military" data-text="القانون 03 - الصبر وضبط النفس والتحلي بالحكمة">
-                <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
-                    <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
-                        <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-extrabold border border-blue-500/20 shadow-inner">03</span>
-                        القانون 03 - الصبر وضبط النفس والتحلي بالحكمة
-                    </span>
-                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
-                </button>
-                <div class="accordion-content px-6 bg-slate-950/40 border-t border-slate-800/50">
-                    <p class="py-4 text-slate-300 text-sm leading-relaxed">القطاعات العسكرية تتطلب ضبط النفس في حالات الضغط الميداني والاستفزاز، ويعاقب كل من يتسرع في ردة الفعل العنيفة غير المبررة.</p>
-                </div>
-            </div>
-
-            <!-- القانون 04 -->
-            <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/40" data-cat="military" data-text="القانون 04 - الالتزام التام بتنفيذ الأوامر العسكرية">
-                <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
-                    <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
-                        <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-extrabold border border-blue-500/20 shadow-inner">04</span>
-                        القانون 04 - الالتزام التام بتنفيذ الأوامر العسكرية
-                    </span>
-                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
-                </button>
-                <div class="accordion-content px-6 bg-slate-950/40 border-t border-slate-800/50">
-                    <p class="py-4 text-slate-300 text-sm leading-relaxed">تنفيذ الأوامر الصادرة من الرتب الأعلى واجب قطعي ما لم تكن مخالفة صريحة لقواعد اللعبة الأساسية، والتمرد يواجه بالفصل المباشر.</p>
-                </div>
-            </div>
-
-            <!-- القانون 05 -->
-            <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/40" data-cat="traffic" data-text="القانون 05 - المحافظة الصارمة على الآليات والدوريات">
-                <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
-                    <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
-                        <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-extrabold border border-blue-500/20 shadow-inner">05</span>
-                        القانون 05 - المحافظة الصارمة على الآليات والدوريات
-                    </span>
-                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
-                </button>
-                <div class="accordion-content px-6 bg-slate-950/40 border-t border-slate-800/50">
-                    <p class="py-4 text-slate-300 text-sm leading-relaxed">السيارات والدوريات الرسمية هي عهدة أمنية يجب صيانتها وعدم استخدامها في أغراض شخصية أو ترفيهية خارج نطاق العمل الميداني.</p>
-                </div>
-            </div>
-
-            <!-- القانون 06 -->
-            <div class="law-card glass-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/40" data-cat="penalties" data-text="القانون 06 - منع استغلال النفوذ والصلاحيات العسكرية">
-                <button onclick="toggleAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-slate-800/40 transition-colors group">
-                    <span class="font-bold text-slate-200 text-sm md:text-base flex items-center gap-3.5 group-hover:text-white transition-colors">
-                        <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs font-extrabold border border-blue-500/20 shadow-inner">06</span>
-                        القانون 06 - منع استغلال النفوذ والصلاحيات العسكرية
-                    </span>
-                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 text-xs"></i>
-                </button>
-                <div class="accordion-content px-6 bg-slate-950/40 border-t border-slate-800/50">
-                    <p class="py-4 text-slate-300 text-sm leading-relaxed">يحرّم منعاً باتاً استغلال الرتبة العسكرية لتحقيق مصالح شخصية، أو مساعدة أصدقاء خارج إطار القانون والنظام المعمول به.</p>
-                </div>
-            </div>
-
         </div>
 
     </main>
 
-    <!-- جافاسكريبت متكامل ومختبر -->
+    <!-- الجافاسكريبت المطور -->
     <script>
-        // فتح وإغلاق القوائم المنسدلة بانيميشن سلس
+        // التبديل بين الأقسام العلوية (الصفحات)
+        function switchSection(sectionId, btnElement) {
+            // إخفاء كل الأقسام
+            document.querySelectorAll('.section-tab').forEach(sec => {
+                sec.classList.remove('active-section');
+            });
+            // إظهار القسم المطلوب
+            document.getElementById('section-' + sectionId).classList.add('active-section');
+
+            // تحديث تصميم أزرار القائمة العلوية
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/40', 'shine-effect');
+                btn.classList.add('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+            });
+            if (btnElement) {
+                btnElement.classList.add('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/40', 'shine-effect');
+                btnElement.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // فتح وإغلاق القوائم المنسدلة للقوانين
         function toggleAccordion(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('.fa-chevron-down');
             const isOpen = content.classList.contains('open');
 
-            // إغلاق الباقي
             document.querySelectorAll('.accordion-content').forEach(item => {
                 item.classList.remove('open');
             });
@@ -214,7 +358,7 @@
             }
         }
 
-        // تصفية القوانين عبر البحث الفوري
+        // تصفية القوانين بالبحث
         function filterLaws() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             const cards = document.querySelectorAll('.law-card');
@@ -229,14 +373,14 @@
             });
         }
 
-        // تصفية الفئات والأقسام
+        // تصفية تصنيفات القوانين
         function filterCategory(category, btn) {
             document.querySelectorAll('.cat-btn').forEach(b => {
-                b.classList.remove('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/25');
+                b.classList.remove('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/30');
                 b.classList.add('bg-slate-900/80', 'text-slate-300', 'border', 'border-slate-800');
             });
             btn.classList.remove('bg-slate-900/80', 'text-slate-300', 'border', 'border-slate-800');
-            btn.classList.add('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/25');
+            btn.classList.add('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-600/30');
 
             const cards = document.querySelectorAll('.law-card');
             cards.forEach(card => {
@@ -246,18 +390,6 @@
                     card.style.display = 'none';
                 }
             });
-        }
-
-        // التبديل بين التبويبات العلوية
-        function switchTab(tabName, event) {
-            if (event) {
-                document.querySelectorAll('.nav-btn').forEach(b => {
-                    b.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30');
-                    b.classList.add('text-slate-300', 'hover:bg-slate-800', 'hover:text-white');
-                });
-                event.currentTarget.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30');
-                event.currentTarget.classList.remove('text-slate-300', 'hover:bg-slate-800', 'hover:text-white');
-            }
         }
     </script>
 </body>
